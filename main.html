@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Bengali Sweets</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Popup container */
+        #login-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Overlay */
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Popup form */
+        .login-form {
+            background-color: #f5f5dc; /* Beige background */
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            border: 2px solid #800000; /* Burgundy border */
+        }
+
+        .login-form h2 {
+            color: #800000; /* Burgundy text */
+            margin-bottom: 20px;
+        }
+
+        .login-form input[type="text"], .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #800000;
+            border-radius: 4px;
+        }
+
+        .login-form button {
+            background-color: #800000; /* Burgundy background */
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background-color: #b30000; /* Darker Burgundy */
+        }
+
+        /* Close button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            color: #800000;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-page">
+        <div class="quote-container">
+            <h1>"Sweets are the language of love in Bengali culture."</h1>
+            <button class="main-button" onclick="showLoginForm()">Explore Now</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div id="sweet-counters" style="text-align: center; padding: 20px; background-color: #f9f3e3;">
+        <h3>Sweet Consumption Statistics</h3>
+        <p>
+            Amount of sweets consumed by the people of <b>India:</b> 
+            <span id="india-counter" style="font-weight: bold; color: #d35400;">0</span> kg
+        </p>
+        <p>
+            Amount of sweets consumed by the <b>World:</b> 
+            <span id="world-counter" style="font-weight: bold; color: #3498db;">0</span> kg
+        </p>
+    </div>
+
+    <!-- Login Popup -->
+    <div id="login-popup">
+        <div class="login-form">
+            <button class="close-btn" onclick="closeLoginForm()">×</button>
+            <h2>Login</h2>
+            <form action="index.html">
+                <input type="text" id="username" placeholder="Username" required><br>
+                <input type="password" id="password" placeholder="Password" required><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Counter settings
+        const indiaStart = 500000000; // Example starting value for India (kg)
+        const worldStart = 1500000000; // Example starting value for the world (kg)
+        const incrementSpeed = 100; // Milliseconds between increments
+
+        // Initialize counters
+        let indiaCount = indiaStart;
+        let worldCount = worldStart;
+
+        // Function to update counters
+        function updateCounters() {
+            indiaCount += Math.floor(Math.random() * 10); // Increment India counter by a random value
+            worldCount += Math.floor(Math.random() * 20); // Increment World counter by a random value
+
+            document.getElementById("india-counter").innerText = indiaCount.toLocaleString();
+            document.getElementById("world-counter").innerText = worldCount.toLocaleString();
+        }
+
+        // Start the counters
+        setInterval(updateCounters, incrementSpeed);
+
+        // Show the login form
+        function showLoginForm() {
+            document.getElementById("login-popup").style.display = 'flex';
+        }
+
+        // Close the login form
+        function closeLoginForm() {
+            document.getElementById("login-popup").style.display = 'none';
+        }
+    </script>
+</body>
+</html>
